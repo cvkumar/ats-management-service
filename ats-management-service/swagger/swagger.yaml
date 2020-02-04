@@ -32,77 +32,117 @@ paths:
             schema:
               $ref: '#/components/schemas/Unknown'
         description: Inventory item to add
-    delete:
-      tags:
-        - ats
-      summary: REST on ATS info
-      operationId: controllers.ats_controller.delete_all
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: "ats retrieved"
-        '404':
-          description: "ats does not exist"
-  /ats/{id}:
-    get:
-      tags:
-        - ats
-      summary: REST on ATS info
-      operationId: controllers.ats_controller.get_ats
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: "ats retrieved"
-        '404':
-          description: "ats does not exist"
     put:
       tags:
         - ats
       summary: REST on ATS info
       operationId: controllers.ats_controller.put_ats
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: string
-          required: true
       responses:
         '200':
-          description: "ats retrieved"
-        '404':
-          description: "ats does not exist"
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Unknown'
         description: Inventory item to add
+    patch:
+      tags:
+        - ats
+      summary: REST on ATS info
+      operationId: controllers.ats_controller.patch_ats
+      responses:
+        '200':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Unknown'
+        description: Inventory item to add
+    get:
+      tags:
+        - ats
+      summary: REST on ATS info
+      operationId: controllers.ats_controller.get_ats
+      responses:
+        '200':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
     delete:
       tags:
         - ats
       summary: REST on ATS info
       operationId: controllers.ats_controller.delete_ats
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: string
-          required: true
       responses:
         '200':
-          description: "ats retrieved"
-        '404':
-          description: "ats does not exist"
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+  # /ats/{id}:
+  #   get:
+  #     tags:
+  #       - ats
+  #     summary: REST on ATS info
+  #     operationId: controllers.ats_controller.get_ats
+  #     parameters:
+  #       - in: path
+  #         name: id
+  #         schema:
+  #           type: string
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: "ats retrieved"
+  #       '404':
+  #         description: "ats does not exist"
+  #   put:
+  #     tags:
+  #       - ats
+  #     summary: REST on ATS info
+  #     operationId: controllers.ats_controller.put_ats
+  #     parameters:
+  #       - in: path
+  #         name: id
+  #         schema:
+  #           type: string
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: "ats retrieved"
+  #       '404':
+  #         description: "ats does not exist"
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/Unknown'
+  #       description: Inventory item to add
+  #   delete:
+  #     tags:
+  #       - ats
+  #     summary: REST on ATS info
+  #     operationId: controllers.ats_controller.delete_ats
+  #     parameters:
+  #       - in: path
+  #         name: id
+  #         schema:
+  #           type: string
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: "ats retrieved"
+  #       '404':
+  #         description: "ats does not exist"
 
 components:
   schemas:

@@ -13,48 +13,18 @@ tags:
   - name: ats
     description: Applicant Tracking Service
 paths:
-  /ats:
+  /{tenant}/ats:
+    parameters:
+      - in: path
+        name: tenant
+        schema:
+          type: string
+        required: true
     post:
       tags:
         - ats
       summary: REST on ATS info
-      operationId: controllers.ats_controller.post_ats
-      responses:
-        '200':
-          description: item created
-        '400':
-          description: 'invalid input, object invalid'
-        '409':
-          description: an existing item already exists
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Unknown'
-        description: Inventory item to add
-    put:
-      tags:
-        - ats
-      summary: REST on ATS info
-      operationId: controllers.ats_controller.put_ats
-      responses:
-        '200':
-          description: item created
-        '400':
-          description: 'invalid input, object invalid'
-        '409':
-          description: an existing item already exists
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Unknown'
-        description: Inventory item to add
-    patch:
-      tags:
-        - ats
-      summary: REST on ATS info
-      operationId: controllers.ats_controller.patch_ats
+      operationId: controllers.ats_controller.post_ats_config
       responses:
         '200':
           description: item created
@@ -72,17 +42,7 @@ paths:
       tags:
         - ats
       summary: REST on ATS info
-      operationId: controllers.ats_controller.get_ats
-      responses:
-        '200':
-          description: item created
-        '400':
-          description: 'invalid input, object invalid'
-    delete:
-      tags:
-        - ats
-      summary: REST on ATS info
-      operationId: controllers.ats_controller.delete_ats
+      operationId: controllers.ats_controller.get_ats_config
       responses:
         '200':
           description: item created
@@ -164,10 +124,4 @@ components:
     #       items:
     #         type: object
     Unknown:
-      required:
-        - client_id
-      properties:
-        client_id:
-          type: string
-          example: ACME Corporation
       type: object

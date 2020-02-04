@@ -1,0 +1,133 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Simple Inventory API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: ats
+    description: Applicant Tracking Service
+paths:
+  /ats:
+    post:
+      tags:
+        - ats
+      summary: REST on ATS info
+      operationId: controllers.ats_controller.post_ats
+      responses:
+        '200':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Unknown'
+        description: Inventory item to add
+    delete:
+      tags:
+        - ats
+      summary: REST on ATS info
+      operationId: controllers.ats_controller.delete_all
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: "ats retrieved"
+        '404':
+          description: "ats does not exist"
+  /ats/{id}:
+    get:
+      tags:
+        - ats
+      summary: REST on ATS info
+      operationId: controllers.ats_controller.get_ats
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: "ats retrieved"
+        '404':
+          description: "ats does not exist"
+    put:
+      tags:
+        - ats
+      summary: REST on ATS info
+      operationId: controllers.ats_controller.put_ats
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: "ats retrieved"
+        '404':
+          description: "ats does not exist"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Unknown'
+        description: Inventory item to add
+    delete:
+      tags:
+        - ats
+      summary: REST on ATS info
+      operationId: controllers.ats_controller.delete_ats
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: "ats retrieved"
+        '404':
+          description: "ats does not exist"
+
+components:
+  schemas:
+    # ConversationUpdate:
+    #   type: object
+    #   required:
+    #     - request_id
+    #     - request_datetime
+    #     - records
+    #   properties:
+    #     request_id:
+    #       type: string
+    #       format: uuid
+    #     request_datetime:
+    #       type: string
+    #       example: conversation_update
+    #     records:
+    #       type: array
+    #       items:
+    #         type: object
+    Unknown:
+      required:
+        - client_id
+      properties:
+        client_id:
+          type: string
+          example: ACME Corporation
+      type: object

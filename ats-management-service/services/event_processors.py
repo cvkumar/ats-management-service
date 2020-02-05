@@ -17,7 +17,7 @@ def process_add_configuration_event(tenant: str, configuration: Dict, source: Op
 def process_get_configuration_event(tenant: str, source: Optional[str]):
     service = KafkaClient(kafka_servers=KAFKA_SERVERS)
     body = service.prepare_message(
-        type="ADD",
+        type="GET",
         message_dict={"tenant": tenant},
         source=source
     )

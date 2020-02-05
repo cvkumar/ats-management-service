@@ -18,7 +18,7 @@ def retrieve_ats_config(tenant: str):
     db_result = settings.DATABASE[ATS_TABLE].find_one(
         {"tenant": tenant}, sort=[("_id", -1)]
     )
-    if db_result.get("_id"):
+    if db_result:
         db_result["_id"] = str(db_result["_id"])
     return db_result
 

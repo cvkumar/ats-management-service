@@ -1,7 +1,7 @@
 from json import dumps, loads
 from kafka import KafkaConsumer, KafkaProducer
 from kafka.admin import KafkaAdminClient, NewTopic
-from typing import Callable, Dict
+from typing import Callable, Dict, Optional
 
 
 class KafkaClient(object):
@@ -51,3 +51,11 @@ class KafkaClient(object):
             admin_client.create_topics(new_topics=[new_topic], validate_only=validate)
         except Exception as e:
             print(f"create_topic: exception: {e}")
+
+    def prepare_message(self, type: str, message_dict: Dict, source: Optional[str] = None, response_topic: Optional[str] = None):
+        return {
+            "type": type,
+            "message": message_dict,
+            "response_topic": response_topic,
+            "source": source
+        }

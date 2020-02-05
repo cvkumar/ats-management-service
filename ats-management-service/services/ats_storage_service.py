@@ -18,6 +18,8 @@ def retrieve_ats_config(tenant: str):
     db_result = settings.DATABASE[ATS_TABLE].find_one(
         {"tenant": tenant}, sort=[("_id", -1)]
     )
+    if db_result.get("_id"):
+        db_result["_id"] = str(db_result["_id"])
     return db_result
 
 
@@ -31,6 +33,6 @@ def delete_ats_config_many(tenant: str):
     return result
 
 
-def delete_ats_config_all(tenant: str):
+def delete_ats_config_all():
     result = settings.DATABASE[ATS_TABLE].delete_many({})
     return result

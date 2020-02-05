@@ -10,3 +10,5 @@ client = MongoClient(mongo_connection)
 DATABASE = client.db
 
 KAFKA_SERVERS = os.getenv("KAFKA_SERVERS", "localhost:31090")
+CONFIG_PUBLISH_TOPIC = "mya-kafka-topic"
+CONFIG_RESPONSE_TOPIC = "mya-kafka-response-topic"

@@ -52,10 +52,10 @@ class KafkaClient(object):
         except Exception as e:
             print(f"create_topic: exception: {e}")
 
-    def prepare_message(self, type: str, message_dict: Dict, source: Optional[str] = None, response_topic: Optional[str] = None):
+    def prepare_message(self, type: str, message_dict: Dict, source: Optional[str] = None, meta: Optional[str] = None):
         return {
             "type": type,
             "message": message_dict,
-            "response_topic": response_topic,
+            "meta": meta,
             "source": source
         }

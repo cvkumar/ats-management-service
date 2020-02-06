@@ -20,7 +20,7 @@ class KafkaClient(object):
             producer = KafkaProducer(
                 bootstrap_servers=self.kafka_servers,
                 value_serializer=lambda x: dumps(x).encode('utf-8'),
-                batch_size=1
+                batch_size=self.batch_size
             )
             meta = producer.send(topic, message)
             producer.flush()

@@ -13,14 +13,14 @@ class KafkaClient(object):
         self.kafka_servers = kafka_servers
         if isinstance(kafka_servers, str):
             self.kafka_servers = [kafka_servers]
-        self.batch_size = batch_size or 16384
+        self.batch_size = batch_size or 1
 
     def produce(self, topic: str, message: Dict):
         try:
             producer = KafkaProducer(
                 bootstrap_servers=self.kafka_servers,
                 value_serializer=lambda x: dumps(x).encode('utf-8'),
-                batch_size=self.batch_size
+                batch_size=1
             )
             meta = producer.send(topic, message)
             producer.flush()
@@ -40,7 +40,9 @@ class KafkaClient(object):
             consumer.subscribe([topic])
 
             for message in consumer:
+                print(f"received in ats consumer: {message.value}")
                 f(message.value)
+            consumer.close()
         except Exception as e:
             print(f"consumer: exception: {e}")
 

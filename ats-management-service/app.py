@@ -1,9 +1,11 @@
 import connexion
+from flask_cors import CORS
 
 app = connexion.FlaskApp(
     __name__, specification_dir="./swagger/", options={"swagger_ui": False}
 )
 app.add_api("swagger.yaml")
+cors = CORS(app.app, resources={r"*": {"origins": "*"}})
 # app.app.config.from_object(settings)
 
 

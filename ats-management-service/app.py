@@ -1,8 +1,5 @@
 import connexion
-from flask import Flask
 from flask_cors import CORS
-
-import settings
 
 app = connexion.FlaskApp(
     __name__, specification_dir="./swagger/", options={"swagger_ui": False}
